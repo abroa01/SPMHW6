@@ -30,3 +30,9 @@ def get_previous_sprints():
         points = int(input(f"Enter points completed in sprint {i}: "))
         sprints.append(points)
     return sprints
+
+
+
+if __name__ == "__main__":
+    sprints = get_previous_sprints()
+    average_velocity = calculate_average_velocity(sprints)
