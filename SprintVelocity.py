@@ -1,4 +1,21 @@
 
+# Method to calculate average velocity
+def calculate_average_velocity(sprints):
+    """
+    Calculate the average velocity given the points completed in previous sprints.
+
+    Args:
+        sprints (list of int): List of points completed in each sprint.
+
+    Returns:
+        float: Average velocity.
+    """
+    if not sprints:
+        return 0
+    total_points = sum(sprints)
+    num_sprints = len(sprints)
+    return total_points / num_sprints
+
 # Method to get input for previous sprints point completion
 def get_previous_sprints():
     """
@@ -19,4 +36,3 @@ def get_previous_sprints():
 if __name__ == "__main__":
     sprints = get_previous_sprints()
     average_velocity = calculate_average_velocity(sprints)
-    output_average_velocity(average_velocity)
