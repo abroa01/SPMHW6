@@ -21,7 +21,7 @@ class Sprint:
         self.sprint_number = sprint_number
         self.start_date = start_date
         self.end_date = end_date
-        self.total_points = 0
+        self.total_points = []
 
 
 class SprintManager:
@@ -111,8 +111,11 @@ class TeamMember:
         Returns:
             int: The available effort-hours for the team member.
         """
+        if num_sprint_days <= 0:
+            return 0
+        
         total_days = num_sprint_days - self.vacation_days - self.ceremony_days
-        return total_days * self.hours_per_day
+        return max(total_days * self.hours_per_day, 0)
 
 
 class TeamEffortHourCalculator:
@@ -149,7 +152,7 @@ class TeamEffortHourCalculator:
             int: The total available effort-hours for the team.
         """
         total_effort_hours = sum(
-            member.calculate_effort_hours(num_sprint_days)
+            max(member.calculate_effort_hours(num_sprint_days), 0)
             for member in self.team_members
         )
         return total_effort_hours
